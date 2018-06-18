@@ -14,8 +14,9 @@ class EditUser extends Component {
         this.handleChangeName = this.handleChangeName.bind(this);
         this.handleChangeEmail = this.handleChangeEmail.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    ComponentDidMount() {
+    componentDidMount() {
         let url = 'http://localhost/projects/LaravelReactJsSample/public/api/users/'+this.props.match.params.id + '/edit';
         axios.get(url)
             .then(response => {
@@ -42,7 +43,7 @@ class EditUser extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        let url = 'http://localhost/projects/LaravelReactJsSample/public/api/users/'+ this.props.match.params.id;
+        let url = 'http://localhost/projects/LaravelReactJsSample/public/api/users/'+this.props.match.params.id;
         const data = {
             name : this.state.name,
             email: this.state.email,
@@ -59,8 +60,8 @@ class EditUser extends Component {
     render() {
         return(
             <App>
-            <h1>Create User</h1>
-            <form onSubmit = {this.handleSubmit}>
+            <h1>Edit User</h1>
+            <form onSubmit={this.handleSubmit}>
              <div className="from-group">
                 <label htmlFor="name">Name</label>
                 <input type="text" className="form-control" id="name" value={this.state.name} onChange={this.handleChangeName} required/>
@@ -73,7 +74,7 @@ class EditUser extends Component {
                 <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" id="password" value={this.state.password} onChange={this.handleChangePassword} required/>
             </div>
-            <button className = "btn btn-primary" type="submit">Add User</button>
+            <button className = "btn btn-primary" type="submit">Edit User</button>
             </form>
             </App>
         );

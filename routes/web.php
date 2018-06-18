@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Route::group(['prefix' => 'api'], function () {
     Route::resource('users', 'UserController');
+    Route::post('users/{id}', 'UserController@update');
 });
 Route::view('/{any}', 'welcome')
     ->where('any', '.*');

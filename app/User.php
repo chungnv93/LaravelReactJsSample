@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function save(array $options = [])
+    {
+        if(is_null($this->id)){
+            $this->password = bcrypt($this->password);
+        }
+        return parent::save($options);
+    }
 }
